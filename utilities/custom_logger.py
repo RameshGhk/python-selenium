@@ -1,3 +1,8 @@
+"""
+@package utilities
+Customized logger
+"""
+
 import inspect
 import logging
 

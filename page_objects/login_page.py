@@ -1,6 +1,5 @@
-from utilities.selenium_driver import SeleniumDriver
-
-class LoginPage(SeleniumDriver):
+from page_objects.base_page import BasePage
+class LoginPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -30,8 +29,12 @@ class LoginPage(SeleniumDriver):
         element = self.isElementPresent(self._verifyLogin, locatorType="xpath")
         return element
 
+    def verifyTitle(self):
+        self.verifyPageTitle("GitHub")
+
+
     def userLogin(self, email, password):
         self.clickLoginLink()
         self.enterEmail(email)
         self.enterPassword(password)
-        self.clickSignIn()
+        #self.clickSignIn()

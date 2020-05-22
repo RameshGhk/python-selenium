@@ -9,13 +9,13 @@ import time
 import os
 
 """
-Customized Selenium WebDriver class which contains all the useful methods that can be re used.
-These methods help to in the following cases:
-To reduce the time required to write automation script.
-To take the screenshot in case of tests case failure.
-To log
-To provide waits
-
+@package utilities
+Customized Selenium WebDriver class built on top of Selenium WebDriver api.
+This class contains all the useful methods that can be re used and very helpful in:
+- To reduce the time required to write automation script.
+- To take the screenshot in case of tests case failure.
+- To log Customized log statements.
+- To provide explicit wait times.
 """
 class SeleniumDriver():
 
@@ -23,6 +23,9 @@ class SeleniumDriver():
 
     def __init__(self, driver):
         self.driver = driver
+
+    def getTitle(self):
+        return self.driver.title
 
     def screenShot(self, resultMessage):
         fileName = resultMessage + "." + str(round(time.time() * 1000)) + ".png"
