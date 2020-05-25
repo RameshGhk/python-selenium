@@ -1,12 +1,23 @@
 # Python-Selenium Test Automation: To automate browser based web testing using 
-## Page Object Model Framework
-## Pytest
-## Introduction
-## Run Test:
+- Page Object Model Framework
+- Pytest
+
+## Required Packages
+### Python3.x
+### pip3
+- ddt (1.4.1)
+- pytest (5.4.2)
+- pytest-html (2.1.1)
+- pytest-ordering (0.6)
+- selenium (3.141.0)
+
+## Run test
 `
 command  
 python -m py.test tests/test.py --browser chrome --html=./reports/report.html
 `
+
+### config.yml
 - driver location is provided in config.yml
 - base Url is provided in config.yml
 
@@ -54,3 +65,4 @@ python-selenium/
     ├── test_status.py  
     ├── util.py  
     └── webdriver_factory.py  
+
