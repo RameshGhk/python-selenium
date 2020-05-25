@@ -10,14 +10,14 @@ Example:
 """
 import traceback
 from selenium import webdriver
-from utilities.yml_config import ConfigFileReader
+from utilities.config_file_reader import ConfigFileReader
 import os
 
 
 class WebDriverFactory():
 
     def __init__(self, browser):
-        yml_file_path = "../config/yml_config.yml"
+        yml_file_path = "../config/config.yml"
         currentDirectory = os.path.dirname(__file__)
         destinationFile = os.path.join(currentDirectory, yml_file_path)
         cfg = ConfigFileReader(destinationFile)

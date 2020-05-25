@@ -22,7 +22,7 @@ class ConfigFileReader:
 
 """
 usage :
-cfg = ConfigFileReader("...../config/yml_config.yml")
+cfg = ConfigFileReader("...../config/config.yml")
 print(cfg.getChromeDriverPath())
 print(cfg.getFirefoxDriverPath())
 

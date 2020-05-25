@@ -13,7 +13,7 @@ def customLogger(logLevel=logging.DEBUG):
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
 
-    fileHandler = logging.FileHandler("Automation".format(loggerName), mode='w')
+    fileHandler = logging.FileHandler("reports/logs/Automation".format(loggerName), mode='w')
     fileHandler.setLevel(logLevel)
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s',
