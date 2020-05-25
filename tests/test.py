@@ -1,16 +1,21 @@
 """
-@pending_task
-parameterize user credentials
+@package tests
+user credentials are passed from data.csv with ddt
+browserType is passed from command line arguments:
+example:
+python -m py.test tests/test.py --browser chrome
 """
 
 from page_objects.login_page import LoginPage
 from utilities.test_status import TestStatus
 import unittest
 import pytest
-import time
+from ddt import ddt, data, unpack
+from utilities.read_data import getCSVData
 
 
 @pytest.mark.usefixtures("oneTimeSetUp")
+@ddt
 class GithubLogin(unittest.TestCase):
 
     @pytest.fixture(autouse=True)
@@ -19,8 +24,10 @@ class GithubLogin(unittest.TestCase):
         self.ts = TestStatus(self.driver)
 
     @pytest.mark.run(order=1)
-    def test_login(self):
-        self.lp.userLogin("username", "password")
+    @data(*getCSVData("data.csv"))
+    @unpack
+    def test_login(self, userName, password):
+        self.lp.userLogin(userName, password)
         titleResult = self.lp.verifyTitle()
         self.ts.mark(titleResult, "Title Verified")
         loginResult = self.lp.verifyLogin()

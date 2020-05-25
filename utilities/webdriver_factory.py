@@ -1,10 +1,3 @@
-
-"""
-@pending_task
-parameterize executable_path for driver location
-baseUrl
-"""
-
 """
 @package utilities
 
@@ -17,10 +10,20 @@ Example:
 """
 import traceback
 from selenium import webdriver
+from utilities.yml_config import ConfigFileReader
+import os
+
 
 class WebDriverFactory():
 
     def __init__(self, browser):
+        yml_file_path = "../config/yml_config.yml"
+        currentDirectory = os.path.dirname(__file__)
+        destinationFile = os.path.join(currentDirectory, yml_file_path)
+        cfg = ConfigFileReader(destinationFile)
+        self.chrome = cfg.getChromeDriverPath()
+        self.firefox = cfg.getFirefoxDriverPath()
+        self.baseUrl = cfg.getBaseUrl()
         """
         Inits WebDriverFactory class
 
@@ -45,15 +48,14 @@ class WebDriverFactory():
         Returns:
             'WebDriver Instance'
         """
-        baseUrl = 'https://github.com/'
         if self.browser == "iexplorer":
             # Set ie driver
             driver = webdriver.Ie()
         elif self.browser == "firefox":
-            driver = webdriver.Firefox(executable_path="/home/tester/Documents/Installed_softwares/browser_drivers/geckodriver")
+            driver = webdriver.Firefox(executable_path = self.firefox)
         elif self.browser == "chrome":
             # Set chrome driver
-            driver = webdriver.Chrome(executable_path="/home/tester/Documents/Installed_softwares/browser_drivers/chromedriver")
+            driver = webdriver.Chrome(executable_path = self.chrome)
         else:
             driver = webdriver.Firefox()
         # Setting Driver Implicit Time out for An Element
@@ -61,5 +63,5 @@ class WebDriverFactory():
         # Maximize the window
         driver.maximize_window()
         # Loading browser with App URL
-        driver.get(baseUrl)
+        driver.get(self.baseUrl)
         return driver

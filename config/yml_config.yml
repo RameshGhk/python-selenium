@@ -1,0 +1,5 @@
+driver_executable_path:
+    chrome: "/home/tester/Documents/Installed_softwares/browser_drivers/chromedriver"
+    firefox: "/home/tester/Documents/Installed_softwares/browser_drivers/geckodriver"
+url:
+    baseUrl: "https://github.com/"
